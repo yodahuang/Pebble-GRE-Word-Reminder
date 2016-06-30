@@ -3,14 +3,22 @@ var Vector2 = require('vector2');
 var ajax = require('ajax');
 
 var CACHE_SIZE = 3;
+var youDaoTranslate = 'http://fanyi.youdao.com/openapi.do?keyfrom=PebbleGreReminder&key=821536062&type=data&doctype=json&only=dict&version=1.1';
+var googleTranslate = 'https://www.googleapis.com/language/translate/v2?key=AIzaSyAcuNyjsT2ejHOcnDqT8L29A7_GM9ndk6A&source=en&target=zh-CN';
+var translateURL = youDaoTranslate;
 
 var cachedWords = [];
+var currentWord;
 
-var wordCard = new UI.Card({
-  title: 'New Word',
-  icon: 'images/menu_icon.png',
-  body: 'Now loading...'
-});
+var wordCard = new UI.Window();
+var newWord = new UI.Text({
+    size: new Vector2(130, 80),
+  position: new Vector2(5,60),
+    font: 'droid_serif_28_bold',
+    text: 'Waiting...',
+    textAlign: 'center'
+  });
+wordCard.add(newWord);
 
 wordCard.show();
 
@@ -20,11 +28,32 @@ function getNewWords(){
   cachedWords = getMockData(CACHE_SIZE);
 }
 
-wordCard.on('click', 'selection', function(e){
-  var defCard = new UI.Card({
+var defCard = new UI.Card({
   title: 'Definition',
   body: ''//The definition get from ajax call
-  });
+});
+
+wordCard.on('click', 'select', function(e){
+  defCard.body('');
+  ajax(
+  {
+    url: translateURL+'&q='+currentWord,
+    type: 'json'
+  },
+  function(translation) {
+    // Success!
+    //defCard.body(translation.data.translations[0].translatedText);
+    var transText = '';
+    translation.basic.explains.forEach( function(explain){
+      transText+=(explain+'\n');
+    });
+    defCard.body(transText);
+  },
+  function(error) {
+    // Failure!
+    console.log('Failed fetching translation data: ' + error);
+  }
+);
   defCard.show();
 });
 
@@ -35,7 +64,8 @@ function displayNewWord(){
   if (!cachedWords.length){
     getNewWords();
   }
-  wordCard.body = cachedWords[cachedWords.length-1];
+  currentWord = cachedWords[cachedWords.length-1];
+  newWord.text(currentWord);
   cachedWords.pop();
 }
 

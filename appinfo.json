@@ -34,7 +34,6 @@
     "sdkVersion": "3",
     "shortName": "GRE Reminder",
     "targetPlatforms": [
-        "aplite",
         "basalt",
         "chalk"
     ],
