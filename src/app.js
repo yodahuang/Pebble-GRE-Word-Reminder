@@ -4,7 +4,6 @@ var ajax = require('ajax');
 
 var CACHE_SIZE = 3;
 var youDaoTranslate = 'http://fanyi.youdao.com/openapi.do?keyfrom=PebbleGreReminder&key=821536062&type=data&doctype=json&only=dict&version=1.1';
-var googleTranslate = 'https://www.googleapis.com/language/translate/v2?key=AIzaSyAcuNyjsT2ejHOcnDqT8L29A7_GM9ndk6A&source=en&target=zh-CN';
 var translateURL = youDaoTranslate;
 
 var cachedWords = [];
