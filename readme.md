@@ -12,6 +12,6 @@ Get new words from [`GRE-Reminder-Service`](https://github.com/yodahuang/GRE-Rem
 
 ### Waitlist
 
-- Use real data from the service instead of mock data
+- ~~Use real data from the service instead of mock data~~
 - Add SVG icon for the application
 - Add animation and more elegant design
