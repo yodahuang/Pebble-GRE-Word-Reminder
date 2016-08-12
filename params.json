@@ -1,0 +1,6 @@
+{
+  "name": "Pebble-gre-word-reminder",
+  "tagline": "A pebble app to help recite GRE words",
+  "body": "### Inspiration\r\n\r\nIt takes too long to unlock your phone and recite words using apps on your phone. Isn't it great to have an app on your lovely Pebble so that you can recite words any time and any where?\r\n> It's always my wish to recite GRE words on my watch! --Yanda Huang\r\n\r\n---\r\n\r\n### Q&A\r\n\r\n- Where do I edit my word list?\r\nYou can edit it at this [lovely website](https://yodahuang.github.io/GRE-Reminder-Website/)\r\n- Why it is not working now?\r\nAfter a big version bump, the Pebble app is not working now. Will fix it soon",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
